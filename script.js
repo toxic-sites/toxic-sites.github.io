@@ -196,32 +196,13 @@ map.on("click", (event) => {
   //this will never turn off as it is written, but you could decide to make it hide if you clicked away from it, or add a close button or whatever.
 });
 
-// add dropdown menu
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function (event) {
-  if (!event.target.matches(".dropbtn")) {
-    //much easier if you do this kind of thing with JQuery, as shown below
-    $(".dropdown-content").each(function (e) {
-      $(this).removeClass("show");
-    });
-  }
-};
-
 //fly back to global view
 
-document.getElementById("global").addEventListener("click", () => {
+document.getElementById("map-fit").addEventListener("click", () => {
   // Fly to a random location
   map.flyTo({
-    center: [-40, 33.5],
-    zoom: 1.5,
+     center: [-98, 31],
+    zoom: 5.5,
     bearing: 0,
     pitch: 0
   });
@@ -271,10 +252,10 @@ function toggleSidebar(ref) {
 
 function toggleLegend(ref) {
   document.getElementById("controller").classList.toggle("active");
-  var x = document.getElementById("sub-control");
-  if (x.style.display === "none") {
-    x.style.display = "block";
+  var y = document.getElementById("map-fit");
+  if (y.style.display === "none") {
+    y.style.display = "block";
   } else {
-    x.style.display = "none";
+    y.style.display = "none";
   }
 }

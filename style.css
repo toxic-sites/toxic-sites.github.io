@@ -160,23 +160,17 @@ input[type="checkbox"]:focus {
 
 /* button to return to global view*/
 
-.global {
-  background-color: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(0px);
-  position: relative;
-  right: 10%;
-  left: 10%;
-  color: black;
-  padding: 6px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
+#map-fit {
+  float:right;
+  font-size:.85em;
+  font-weight:normal;
+text-transform: uppercase;
+text-decoration:none;
+color:#555;
+  display:block;
 }
-
-.global:hover,
-.global:focus {
-  background-color: #3275f6;
+#map-fit:hover {
+  text-decoration:underline;
 }
 
 .visible {
