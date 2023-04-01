@@ -58,12 +58,12 @@ p2 {
   left: 1em !important;
   top: 0.6em;
   padding: 1em;
-  overflow-y: auto;
+  overflow-y: hidden;
   max-height: 90vh;
-  min-width: 3em;
+  min-width: auto;
 }
 
-.button {
+button {
   margin: 0 8px 0 8px;
   user-select: none;
   display: flex;
@@ -71,27 +71,81 @@ p2 {
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.checkbox {
-  width: 12px;
-  height: 12px;
-  border: 1px solid #000;
-  border-radius: 3px;
-  margin: 0 2px 0 4px;
-  transition: all 0.3s ease;
+
+/* CHECKBOXES */
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: currentColor;
+  margin:0 0 .5em 0;
+  font: inherit;
+  color: #800000;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
 }
-.checkbox.radio {
-  border-radius: 10px;
+
+input[type="checkbox"][value="toxic-sites"] {
+  color:#666;
+  border-radius:1em;
+  border: 0.08em solid #e7e7e7dd;
 }
-.checkbox.checked {
-  background-color: #000;
+
+input[type="checkbox"][value="extreme-risk"] {
+  color:#94001e;
 }
-.break {
-  height: 24px;
-  width: 2px;
-  background: #000;
-  opacity: 10%;
-  margin: 0 12px 0 4px;
+input[type="checkbox"][value="ziprisksevere"] {
+  color:#cb1a1d;
 }
+input[type="checkbox"][value="zipriskmajor"] {
+  color:#ef5334;
+}
+input[type="checkbox"][value="moderate-risk"] {
+  color:#f7821d;
+}
+input[type="checkbox"][value="minor-risk"] {
+  color:#f8b225;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #fff;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid #ccc;
+  outline-offset: max(2px, 0.15em);
+}
+
+.layer-control {
+  font-family: system-ui, sans-serif;
+  font-size: 1.25em;
+  font-weight: bold;
+  line-height: 1.1;
+    display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.55em;
+}
+
+.layer-control + .layer-control {
+  margin-top: 2em;
+}
+
 /* button to collapse legend */
 
 .collapse-btn {
@@ -161,6 +215,8 @@ p2 {
 .legend a {
   color: #777;
 }
+
+
 /* Dropdown Button */
 .dropbtn {
   background-color: rgba(255, 255, 255, 0.6);
@@ -249,11 +305,20 @@ p2 {
 
 .mapboxgl-popup {
   max-width: 600px !important;
-  font: 11px/28px "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .mapboxgl-popup p {
-  margin-bottom:1em;
+  margin:.5em 0;border:0px solid red;
+  font: 1.25em/1.25em "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+.mapboxgl-popup p {
+width:100%;
+}
+.mapboxgl-popup p.average-risk {
+  font-size:2em;
+}
+.mapboxgl-popup p.chemicals {
+  font-size:1.5em;
 }
 
 /* hide sidebar */
