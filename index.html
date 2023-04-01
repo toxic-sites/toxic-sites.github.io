@@ -25,36 +25,45 @@
     <!-- PANEL TOGGLE -->
 
     <button id="collapse" class="collapse-btn" onclick="toggleLegend()"><img src="https://raw.githubusercontent.com/Erklgrew/Biolabs/main/Toggle.png" width="20px" alt="toggle button icon"></button>
-    <br /><br />
-  
+
     <!-- LAYER FILTERS -->
-  <h3>Sites and Risk Zones</h3>
-      <div class="block">
+
+    <div class="block">
+      <a href="#" id="map=fit">Reset Map</a>
+          <br /><br />
         <div>
-          <input type="checkbox" id="toxic-sites" value="toxic-sites" onchange="switchlayer('toxic-sites')" checked />
-          <label for="toxic-sites">Sites</label>
+          <label class="layer-control" for="toxic-sites">
+            <input type="checkbox" id="toxic-sites" value="toxic-sites" onchange="switchlayer('toxic-sites')" checked />
+          Sites</label>
         </div>
         <div>
-          <input type="checkbox" id="extreme-risk" value="extreme-risk" onchange="switchlayer('extreme-risk')" checked />
-          <label for="bsl3plus">Extreme Risk</label>
+          <label class="layer-control" for="extreme-risk">
+            <input type="checkbox" id="extreme-risk" value="extreme-risk" onchange="switchlayer('extreme-risk')" checked />
+            Extreme Risk
+          </label>
         </div>
           <div>
-            <input type="checkbox" id="severe-risk" value="severe-risk" onchange="switchlayer('severe-risk')" checked />
-            <label for="severe-risk">Severe Risk</label>
+            <label class="layer-control" for="ziprisksevere">
+              <input type="checkbox" id="ziprisksevere" value="ziprisksevere" onchange="switchlayer('ziprisksevere')" checked />
+            Severe Risk</label>
           </div>
           <div>
-            <input type="checkbox" id="major-risk" value="major-risk" onchange="switchlayer('major-risk')" checked />
-            <label for="major-risk">Major Risk</label>
+            <label class="layer-control" for="zipriskmajor">
+              <input type="checkbox" id="zipriskmajor" value="zipriskmajor" onchange="switchlayer('zipriskmajor')" checked />
+            Major Risk</label>
           </div> 
                   <div>
+          <label class="layer-control" for="moderate-risk">
             <input type="checkbox" id="moderate-risk" value="moderate-risk" onchange="switchlayer('moderate-risk')" checked />
-            <label for="moderate-risk">Moderate Risk</label>
+            Moderate Risk</label>
           </div> 
                   <div>
+          <label class="layer-control" for="minor-risk">
             <input type="checkbox" id="minor-risk" value="minor-risk" onchange="switchlayer('minor-risk')" checked />
-            <label for="minor-risk">Minor Risk</label>
+            Minor Risk</label>
           </div> 
           <!-- LEGEND -->
+          <!--
           <div class='legend'>
             <div class='legend-scale'>
               <ul class='legend-labels'>
@@ -71,7 +80,7 @@
                 <li><span></span>100%</li>
               </ul>
             </div>
-          </div>
+          </div>-->
         </div>
   </div>
     <div class="container" id="sidebar">
