@@ -11,13 +11,21 @@ var map = new mapboxgl.Map({
     '<div id="rotate-mobile"><em>For optimal viewing of this storytelling map on mobile, rotate your device to a horizontal orientation.</em><br><br><img src="https://cdn-icons-png.flaticon.com/512/41/41707.png">' // to add custom messaging in the header for mobile devices
 });
 
+//Optimize for mobile?
+var mq = window.matchMedia( "(min-width: 768px)" );
+if (mq.matches){
+    map.setZoom(5.5); //set map zoom level for desktop size
+} else {
+    map.setZoom(5); //set map zoom level for mobile size
+};
+
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
 //change the site to function better on mobile
 
-var siteWidth = 1280;
-var scale = screen.height / siteWidth;
+// var siteWidth = 1280;
+// var scale = screen.height / siteWidth;
 
 map.on(
   "style.load",
@@ -63,22 +71,29 @@ map.on("mouseenter", ["toxic-sites"], (event) => {
     return;
   }
   const feature = features[0];
-
+  var risk = "n/a";
+  if (feature.properties.Risk >= 9) { risk = "Extreme" };
+  if (feature.properties.Risk >=7 && feature.properties.Risk < 9) {risk = "Severe"};
+    if (feature.properties.Risk >=5 && feature.properties.Risk < 7) {risk = "Major"};
+      if (feature.properties.Risk >=3 && feature.properties.Risk < 5) {risk = "Moderate"};
+      if (feature.properties.Risk >=1 && feature.properties.Risk < 3) {risk = "Minor"};
+  
   const popup = new mapboxgl.Popup({
     className: "site-popup",
     closeButton: false,
     closeOnClick: true,
     offset: [0, 0]
   })
+
     .setLngLat(feature.geometry.coordinates)
     .setHTML(
-      `<p><strong>Average area flood risk:</strong> ${feature.properties.Risk}</p>
-      <p><strong>Chemicals reported on site:</strong> ${feature.properties.Chemicals}</p>
-      <p><strong>Facility:</strong> ${feature.properties.FacilityName}<br />
+      `<p class="average-risk"><strong>Average area flood risk:</strong> ${feature.properties.Risk} (${risk})</p>
+      <p class="chemicals"><strong>Chemicals reported on site:</strong> ${feature.properties.Chemicals}</p>
+      <p class="facility"><strong>Facility:</strong> ${feature.properties.FacilityName}<br />
       ${feature.properties.Street}<br />
       ${feature.properties.City}, ${feature.properties.State}</p>
-      <p><strong>Parent company:</strong> ${feature.properties.ParentName}</p>
-      <p><strong>EPA facility ID:</strong> ${feature.properties.FacilityID}</p>` 
+      <p class="parent-company"><strong>Parent company:</strong> ${feature.properties.ParentName}</p>
+      <p class="epa-id"><strong>EPA facility ID:</strong> ${feature.properties.FacilityID}</p>` 
     )
     .addTo(map);
   //close popup on mouse leave
@@ -227,10 +242,11 @@ $(".dropdown-content a").on("click", function () {
   }
 });
 
-//Optimize for mobile?
+
 
 if (window.Touch) {
   /* JavaScript for  touch interface */
+
 }
 
 //hide sidebar
