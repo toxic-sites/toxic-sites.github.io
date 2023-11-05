@@ -1,0 +1,431 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+#map {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.map-button {
+  position: absolute;
+  color: #000;
+}
+h3 {
+  font-size: 18px;
+  line-height: 24px;
+  margin: 8px 8px 8px 8px;
+}
+p {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 16px 0 16px;
+  float: left;
+}
+p2 {
+  font-size: 10px;
+  line-height: 5px;
+  margin: 0 6px 0 6px;
+  float: right;
+}
+
+.container {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  box-shadow: 0px 10px 20px -3px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+}
+
+.container-drawer {
+  margin: 6px 0 16px 0;
+}
+#data-layers {
+  display: block;
+}
+#data-layers a {
+  display: block;
+}
+#controller {
+  left: 1em !important;
+  top: 0.6em;
+  padding: 1em;
+  overflow-y: hidden;
+  max-height: 90vh;
+  min-width: auto;
+}
+
+button {
+  margin: 0 8px 0 8px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* CHECKBOXES */
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: currentColor;
+  margin:0 0 .5em 0;
+  font: inherit;
+  color: #800000;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"][value="toxic-sites"] {
+  color:#666;
+  border-radius:1em;
+  border: 0.08em solid #e7e7e7dd;
+}
+
+input[type="checkbox"][value="extreme-risk"] {
+  color:#94001e;
+}
+input[type="checkbox"][value="ziprisksevere"] {
+  color:#cb1a1d;
+}
+input[type="checkbox"][value="zipriskmajor"] {
+  color:#ef5334;
+}
+input[type="checkbox"][value="moderate-risk"] {
+  color:#f7821d;
+}
+input[type="checkbox"][value="minor-risk"] {
+  color:#f8b225;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #fff;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid #ccc;
+  outline-offset: max(2px, 0.15em);
+}
+
+.layer-control {
+  font-family: system-ui, sans-serif;
+  font-size: 1.25em;
+  font-weight: bold;
+  line-height: 1.1;
+    display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.55em;
+}
+
+.layer-control + .layer-control {
+  margin-top: 2em;
+}
+
+/* button to collapse legend */
+
+.collapse-btn {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 2px;
+  float: left;
+  margin-left: 1px !important;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+/* button to return to global view*/
+
+#map-fit {
+  float:right;
+  font-size:.85em;
+  font-weight:normal;
+text-transform: uppercase;
+text-decoration:none;
+color:#555;
+  display:block;
+}
+#map-fit:hover {
+  text-decoration:underline;
+}
+
+.visible {
+  visibility: none;
+}
+
+/* legend for country scores */
+.legend .legend-title {
+  text-align: left;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 90%;
+}
+.legend .legend-scale ul {
+  margin: 0;
+  padding: 0;
+  float: left;fcontainer
+  list-style: none;
+}
+.legend .legend-scale ul li {
+  display: block;
+  float: left;
+  width: 20px;
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 80%;
+  list-style: none;
+}
+.legend ul.legend-labels li span {
+  display: block;
+  float: left;
+  height: 20px;
+  width: 25px;
+  margin: 8px 8px 8px 8px;
+}
+.legend a {
+  color: #777;
+}
+
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0px 10px 20px -3px rgba(0, 0, 0, 0.15);
+}
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #3275f6;
+  color: white;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: -16px;
+  left: 110%;
+  right: 3em;
+  padding: 1em;
+  display: none;
+  max-height: 555px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  min-width: 210px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 0;
+  padding-bottom: 0.5em;
+  overflow-y: auto;
+  border-radius: 6px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #3275f6;
+  border-radius: 6px;
+  color: white;
+}
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
+}
+
+/* sidebar */
+#sidebar {
+  right: 3em !important;
+  top: 0.6em;
+  padding: 1em;
+  min-width: 3em;
+  max-width: 30vw;
+  display: none;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+#sidebar .prop_key {
+  font-weight: bold;
+}
+#sidebar #properties {
+  font-size: 11pt;
+  overflow-y: auto;
+  max-overflow: 50vh;
+}
+#sidebar .property {
+  padding-bottom: 0.5em;
+}
+
+/* popup */
+
+.mapboxgl-popup {
+  max-width: 600px !important;
+}
+
+.mapboxgl-popup p {
+  margin:.5em 0;border:0px solid red;
+  font: 1.25em/1.25em "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+.mapboxgl-popup p {
+width:100%;
+}
+.mapboxgl-popup p.average-risk {
+  font-size:2em;
+}
+.mapboxgl-popup p.chemicals {
+  font-size:1.5em;
+}
+
+/* hide sidebar */
+
+#sidebar.active {
+  height: 15px;
+  width: 10px;
+  transition: all 0.3s ease;
+}
+#sidebar .toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#sidebar .toggle-btn span {
+  display: block;
+  width: 20px;
+  height: 3px;
+  background: #151719;
+  margin: 5px 0px;
+  cursor: pointer;
+}
+#sidebar div.list div.item {
+  padding: 15px 10px;
+  border-bottom: 1px solid #444;
+  color: #fcfcfc;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+#sidebar div.list div.item a {
+  color: #fcfcfc;
+  text-decoration: none;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: fixed;
+  display: inline-block;
+  y-overflow: auto;
+  /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  size: 16px !important;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  color: #000000;
+  text-align: left;
+  padding: 5px 5px 5px 5px;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! 
+  position: absolute;
+  z-index: 1;
+}
+ */
+
+/* Show the tooltip text when you mouse over the tooltip container 
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+*/
+#logos {
+  position: absolute !important;
+  opacity: 50%;
+  right: 10px !important;
+  bottom: 30px !important;
+  margin-right: 5px !important;
+}
+
+/* legend collapse */
+
+#controller.active {
+  height: 20px;
+  width: 28px;
+  transition: all 0.3s ease !important;
+}
+
+.boxed {
+  border: 1px;
+  padding: 2px 0px 2px 15px;
+  margin-top: ;
+  margin-bottom: 2px;
+}
+
+#rotate-mobile {
+  display: none;
+}
+#rotate-mobile {
+  display: inline-block;
+  margin-top: 25px;
+}
+/* Fix issue on mobile browser where scroll breaks  */
+.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
+.mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan
+  .mapboxgl-canvas {
+  touch-action: unset;
+}
+
+/* for all screens */
+#info {
+  display: none;
+}
+
+/* only when orientation is in portrait mode */
+@media all and (orientation: portrait) {
+  #info {
+    display: block;
+  }
+}
