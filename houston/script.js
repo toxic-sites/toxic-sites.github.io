@@ -5,8 +5,8 @@ var map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/tgaulkin/clfsr1ekz002c01qveq6yiqvp",
   center: [-98, 31],
-  minZoom: 5.5,
-  zoom: 5.5,
+  minZoom: 3.5,
+  zoom: 3.5,
   mobileview:
     '<div id="rotate-mobile"><em>For optimal viewing of this storytelling map on mobile, rotate your device to a horizontal orientation.</em><br><br><img src="https://cdn-icons-png.flaticon.com/512/41/41707.png">' // to add custom messaging in the header for mobile devices
 });
