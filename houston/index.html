@@ -1,1 +1,99 @@
 
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Houston - Toxic Sites</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<head>
+  <meta charset="utf-8" />
+  <title>Toxic Sites</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <div class="container" id="controller">
+
+    <!-- PANEL TOGGLE -->
+
+    <button id="collapse" class="collapse-btn" onclick="toggleLegend()"><img src="https://raw.githubusercontent.com/Erklgrew/Biolabs/main/Toggle.png" width="20px" alt="toggle button icon"></button>
+
+    <!-- LAYER FILTERS -->
+
+    <div class="block">
+      <a href="#" id="map-fit">Reset Map</a>
+          <br /><br />
+        <div>
+          <label class="layer-control" for="toxic-sites">
+            <input type="checkbox" id="toxic-sites" value="toxic-sites" onchange="switchlayer('toxic-sites')" checked />
+          Sites</label>
+        </div>
+        <div>
+          <label class="layer-control" for="extreme-risk">
+            <input type="checkbox" id="extreme-risk" value="extreme-risk" onchange="switchlayer('extreme-risk')" checked />
+            Extreme Risk
+          </label>
+        </div>
+          <div>
+            <label class="layer-control" for="ziprisksevere">
+              <input type="checkbox" id="ziprisksevere" value="ziprisksevere" onchange="switchlayer('ziprisksevere')" checked />
+            Severe Risk</label>
+          </div>
+          <div>
+            <label class="layer-control" for="zipriskmajor">
+              <input type="checkbox" id="zipriskmajor" value="zipriskmajor" onchange="switchlayer('zipriskmajor')" checked />
+            Major Risk</label>
+          </div> 
+                  <div>
+          <label class="layer-control" for="moderate-risk">
+            <input type="checkbox" id="moderate-risk" value="moderate-risk" onchange="switchlayer('moderate-risk')" checked />
+            Moderate Risk</label>
+          </div> 
+                  <div>
+          <label class="layer-control" for="minor-risk">
+            <input type="checkbox" id="minor-risk" value="minor-risk" onchange="switchlayer('minor-risk')" checked />
+            Minor Risk</label>
+          </div> 
+          <!-- LEGEND -->
+          <!--
+          <div class='legend'>
+            <div class='legend-scale'>
+              <ul class='legend-labels'>
+                <li><span style='background:#940025;'></span>0%</li>
+                <li><span style='background:#bd0026;'></span></li>
+                <li><span style='background:#e31a1c;'></span></li>
+                <li><span style='background:#fd8d3c;'></span>30%</li>
+                <li><span style='background:#feb24c;'></span></li>
+                <li><span style='background:#fed976;'></span></li>
+                <li><span style='background:#ffeda0;'></span></li>
+                <li><span style='background:#8CCF36;'></span>70%</li>
+                <li><span style='background:#43B53F;'></span></li>
+                <li><span style='background:#009E49;'></span></li>
+                <li><span></span>100%</li>
+              </ul>
+            </div>
+          </div>-->
+        </div>
+  </div>
+    <div class="container" id="sidebar">
+    <div class="toggle-btn" onclick="toggleSidebar(this)">
+      <img src="https://raw.githubusercontent.com/Erklgrew/Biolabs/main/Toggle.png" width=20px>
+    </div>
+    <h3 id='site_name'>Additional Information</h3>
+    <div id='properties'></div>
+  </div>
+</body>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
